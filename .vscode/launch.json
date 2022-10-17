@@ -1,0 +1,30 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        
+        {
+            "type": "node",
+            "request": "launch",
+            //"preLaunchTask": "build",
+            "name": "run exportMicroflows",
+            "console": "integratedTerminal",
+            "program": "${workspaceFolder}/out/exportMicroflowsToTypescript.js",
+            "preLaunchTask": "tsc: watch - tsconfig.json",
+            "outFiles": ["${workspaceFolder}/out/**/*.js"],
+            "internalConsoleOptions": "openOnSessionStart" // open 'debug console'
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            //"preLaunchTask": "build",
+            "name": "run mendilangelo",
+            "program": "${workspaceFolder}/out/mendilangelo.js",
+            "preLaunchTask": "tsc: watch - tsconfig.json",
+            "outFiles": ["${workspaceFolder}/out/**/*.js"],
+            "internalConsoleOptions": "openOnSessionStart" // open 'debug console'
+        }
+    ]
+}
