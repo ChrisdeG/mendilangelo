@@ -1,6 +1,6 @@
 {
-  "name": "latestsdk",
-  "version": "1.0.0",
+  "name": "mendilangelo",
+  "version": "1.0.1",
   "main": ".\\out\\mendilangelo.js",
   "bin": ".\\out\\mendilangelo.js",
   "scripts": {

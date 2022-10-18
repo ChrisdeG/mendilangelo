@@ -50,7 +50,8 @@ Place them in Environment Variables as described in the documentation. They shou
 Start with cloning this repo on your local machine:
 
 ```sh
-$ npm install mendilangelo
+$ git clone https://github.com/ChrisdeG/mendilangelo.git
+$ cd mendilangelo
 ```
 
 To install and set up the library, run:
@@ -59,10 +60,14 @@ To install and set up the library, run:
 $ npm install 
 ```
 
-Or if you prefer using Yarn:
-
+compile the code
 ```sh
-$ yarn add 
+$ tsc
+```
+
+run the app
+```sh
+$ npm start
 ```
 
 ## Usage
