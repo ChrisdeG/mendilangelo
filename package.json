@@ -5,13 +5,17 @@
   "bin": ".\\out\\mendilangelo.js",
   "scripts": {
     "start": "node .\\out\\mendilangelo.js",
-    "export": "node .\\out\\exportMicroflowsToTypescript.js"
+    "export": "node .\\out\\exportMicroflowsToTypescript.js",
+    "build": "tsc"
   },
   "keywords": [
     "Mendix"
   ],
+  "compilerOptions": {
+    "esModuleInterop": true
+  },
   "author": "Chris de Gelder",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "@types/when": "^2.4.34",
     "axios": "^1.1.2",
@@ -22,11 +26,10 @@
     "open": "^8.4.0",
     "when": "^3.7.8"
   },
-  "description": "",
+  "description": "Mendix code generator",
   "devDependencies": {
     "@types/axios": "^0.14.0",
     "@types/got": "^9.6.12",
-    "@types/inquirer": "^9.0.1",
-    "@types/request": "^2.48.8"
+    "@types/inquirer": "^9.0.1"
   }
 }

@@ -1,5 +1,4 @@
 import axios from 'axios';
-import open from 'open';
 import inquirer from 'inquirer'
 import { IModel } from "mendixmodelsdk";
 
@@ -26,34 +25,28 @@ interface Branch {
 }
 
 export async function getBranches(appId: string): Promise<Branch> {
-    const url = `https://repository.api.mendix.com/v1/repositories/${appId}/branches`;
-
-    var options = {
+    let res = await axios.get(`https://repository.api.mendix.com/v1/repositories/${appId}/branches`, {
         'headers': {
             'Authorization': 'MxToken ' + process.env.MENDIX_TOKEN
         }
-    };
-    const json = await axios.get<Branch>(url, options);
-    if (json.data) {
-        return json.data;
-    } else { 
-        // trunk is always available (todo git does not use trunk)
+    })
+    if (res && res.data) {
+        return res.data;
+    } else {
+        // trunk is always available
         return ({ items: [{ name: 'trunk', latestCommit: { date: new Date(), message: '', mendixVersion: '' } }] });
     }
 }
 
 export async function getApps(): Promise<App[]> {
-    const url = 'https://deploy.mendix.com/api/1/apps';
-    var options = {
+    let request = await axios.get('https://deploy.mendix.com/api/1/apps', {
         'headers': {
             'Mendix-ApiKey': process.env.MENDIX_API_KEY,
             'Mendix-Username': process.env.MENDIX_API_USER
         }
-    };
-    let json = await axios.get<App[]>(url, options);
-    return json.data;
+    })
+    return request.data;
 }
-
 /*
     Check whether the environment constants are filled in
     open the Mendix pages for instructions.

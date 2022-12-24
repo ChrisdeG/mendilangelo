@@ -1,8 +1,6 @@
 /*
     Create microflows for Validation, FindOrCreate, DeleteAll, Save (Validate & Close) 
 */
-//import { domainmodels, Model, JavaScriptSerializer, AbstractModel } from "mendixmodelsdk";
-//import IDomainModel = domainmodels.IDomainModel;
 import { MendixPlatformClient } from "mendixplatformsdk"; 
 import { generateSaveMFEntity } from "./generateSaveMFEntity";
 import { generateDeleteAllForEntity } from "./generateDeleteAllForEntity";
@@ -12,7 +10,7 @@ import { askApp, askBranch, keysAndTokensOk, askModule} from './getAppsAndBranch
 
 
 async function main() {
-    console.info("Mendilangelo - Mendix code generator - v 0.1 (c) Chris de Gelder / Low code connect 2022")
+    console.info("Mendilangelo - Mendix code generator - v 0.2 (c) Chris de Gelder / Low code connect 2022")
     // check the environment variables and token
     if (!keysAndTokensOk()) 
         return;
@@ -43,10 +41,6 @@ async function main() {
         generateSaveMFEntity(model, domainModel, entity.name, targetModule);
     });
     await model.flushChanges();
-    // TODO Opton to Export MPK instead of commit.
-    // let module = model.allModules().filter(mod => mod.name === targetModule)[0];
-    // await model.exportModuleMpk(module.id, 'out.mpk')
-    // in case of svn "trunk", git "main" otherwise branch name
     await workingCopy.commitToRepository(branch);
 }
 
