@@ -52,8 +52,32 @@ async function main() {
                 }
             });
     })
+
+    model.allPages().forEach(async page => {
+        const loadedPage = await page.load();
+        let module = 'others'
+        try {
+            const md = getModule(page)
+            if (md) {
+                module = md.name
+            }
+        } catch (err) {
+            console.log(err)
+        }
+        let tsContents = JavaScriptSerializer.serializeToJs(loadedPage);
+        // tsContents = processJavascriptCode(tsContents, page);
+        const filename = `${dir}/${module}_${page.name}.ts`;
+        console.log('Writing ', filename)
+        fs.writeFile(filename,
+            tsContents, err => {
+                if (err) {
+                    console.error(err);
+                }
+            });
+    })
+
     /*
-        adapt the javascript to make it typescript and add paramter.s
+        adapt the javascript to make it typescript and add parameters
     */
 
     function processJavascriptCode(tsContents: string, mf: microflows.IMicroflow) {
